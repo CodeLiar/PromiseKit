@@ -70,6 +70,7 @@
  @see catchOn
 */
 - (PMKPromise *(^)(id))catch;  // catch is a c++ keyword
+- (PMKPromise *(^)(id))catchInBackground;  // catch is a c++ keyword
 #endif
 
 /**
@@ -80,6 +81,7 @@
  @see catchOn
 */
 - (PMKPromise *(^)(void(^)(void)))finally;
+- (PMKPromise *(^)(void(^)(void)))finallyInBackground;
 
 /**
  The provided block is executed on the dispatch queue of your choice when the receiver is fulfilled.

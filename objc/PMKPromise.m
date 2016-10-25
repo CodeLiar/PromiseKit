@@ -232,9 +232,21 @@ id pmk_safely_call_block(id frock, id result) {
     };
 }
 
+- (PMKPromise *(^)(id))catchInBackground {
+    return ^(id block){
+        return self.catchOn(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
+    };
+}
+
 - (PMKPromise *(^)(dispatch_block_t))finally {
     return ^(dispatch_block_t block) {
         return self.finallyOn(dispatch_get_main_queue(), block);
+    };
+}
+
+- (PMKPromise *(^)(dispatch_block_t))finallyInBackground {
+    return ^(dispatch_block_t block) {
+        return self.finallyOn(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
     };
 }
 
